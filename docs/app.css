@@ -1,3 +1,24 @@
+body {
+  animation: colorchange 20s infinite;
+  -webkit-animation: colorchange 20s infinite;
+}
+@keyframes colorchange
+{
+  0%   {background: #fb6340;}
+  25%  {background: #ffd600;}
+  50%  {background: #5e72e4;}
+  75%  {background: #2dce89;}
+  100% {background: #fb6340;}
+}
+/* for Safari and Chrome - */
+@-webkit-keyframes colorchange
+{
+  0%   {background: #fb6340;}
+  25%  {background: #ffd600;}
+  50%  {background: #5e72e4;}
+  75%  {background: #2dce89;}
+  100% {background: #fb6340;}
+}
 .card {
   margin-top: 80px;
 }

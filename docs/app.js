@@ -9,6 +9,9 @@ const taskInput = document.querySelector('#task');
 loadEventListeners();
 
 function loadEventListeners() {
+  // DOM load event
+  document.addEventListener('DOMContentLoaded', getTasks);
+
   // Add tasks event
   form.addEventListener('submit', addTask);
 
@@ -22,6 +25,29 @@ function loadEventListeners() {
   filter.addEventListener('keyup', filterTasks);
 }
 
+// Get tasks from Local storage
+function getTasks(e) {
+  let tasks;
+  let tasksStored = localStorage.getItem('tasks');
+  if(tasksStored === null) {
+    tasks = [];
+  }
+  else {
+    tasks = JSON.parse(tasksStored);
+  }
+
+  tasks.forEach(task => {
+  const li = document.createElement('li');
+  li.className = 'collection-item';
+  li.appendChild(document.createTextNode(task));
+  const link = document.createElement('a');
+  link.className = 'delete-item secondary-content';
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  li.appendChild(link);
+  taskList.appendChild(li);
+  });
+}
+
 // Add task
 function addTask(e) {
   if(taskInput.value === '') {
@@ -30,20 +56,28 @@ function addTask(e) {
   else {
   // Create List element
   const li = document.createElement('li');
+
   // Add class
   li.className = 'collection-item';
+
   // Creat text node and Append to li
   li.appendChild(document.createTextNode(taskInput.value));
 
   // Create the remove link element
   const link = document.createElement('a');
   link.className = 'delete-item secondary-content';
+
   // Add icon
   link.innerHTML = '<i class="fa fa-remove"></i>';
+
   // Append link to li
   li.appendChild(link);
-  // Append link to li
+
+  // Append li to ul
   taskList.appendChild(li);
+
+  // store tasks in localStorage
+  storeTasks(taskInput.value);
 
   // Clear input
   taskInput.value = '';
@@ -52,6 +86,21 @@ function addTask(e) {
   }
 }
 
+// Store tasks
+function storeTasks(task) {
+  let tasks;
+  let tasksStored = localStorage.getItem('tasks');
+  if(tasksStored === null) {
+    tasks = [];
+  }
+  else {
+    tasks = JSON.parse(tasksStored);
+  }
+
+  tasks.push(task);
+
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+};
 // Remove task
 function removeTask (e) {
   if(e.target.parentElement.classList.contains('delete-item')) {
