@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
+
 body {
+  font-family: 'Roboto Mono', monospace;
   animation: colorchange 20s infinite;
   -webkit-animation: colorchange 20s infinite;
 }
@@ -21,4 +24,7 @@ body {
 }
 .card {
   margin-top: 80px;
+}
+.collection-item {
+  font-size: 20px;
 }
