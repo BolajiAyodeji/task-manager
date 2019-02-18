@@ -1,1 +1,2 @@
-docs/* linguist-documentation=true
+* linguist-vendored
+*.js linguist-vendored=false
