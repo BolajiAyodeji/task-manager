@@ -52,6 +52,8 @@ function getTasks(e) {
 function addTask(e) {
   if(taskInput.value === '') {
     alert('Add a task first!')
+
+    e.preventDefault();
   }
   else {
   // Create List element
@@ -138,6 +140,8 @@ function clearTasks(e) {
 
   while(taskList.firstChild) {
     taskList.removeChild(taskList.firstChild);
+
+    e.preventDefault();
   }
 
   // Clear from LS
